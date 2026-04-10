@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="./output.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="/node_modules/owl.carousel/dist/assets/owl.carousel.min.css"
+    />
   </head>
   <body class="bg-black text-white">
     <!-- nav -->
@@ -138,7 +142,7 @@
     <header>
       <!-- Hero -->
       <section>
-        <div class="bg-intro bg-radial from-white/15 to-black py-20 px-3.5">
+        <div class="bg-intro bg-radial from-white/15 to-black py-15 px-3.5">
           <div class="location flex items-center justify-center">
             <img class="h-6 w-6" src="images/loc.png" alt="location-icon" />
             <h5 class="opacity-40 font-light">Jakarta, Indonesia</h5>
@@ -337,15 +341,38 @@
       </article>
     </section>
     <!-- Project -->
-    <section class="project my-10 px-20">
-      <article class="grid grid-cols-1 md:grid-cols-2">
-        <section class="">
-          <h2 class="text-5xl font-medium">Projects I have worked on</h2>
+    <section class="project my-30 px-20">
+      <article class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <section class="sm:pr-10">
+          <h2 class="text-5xl font-medium mb-10">Projects I have worked on</h2>
           <ul class="list-project">
-            <li class="py-5 border-t border-t-white/30">
+            <li class="py-5 border-b border-b-white/30">
               <!-- Area Klik -->
-              <div class="list cursor-pointer hover:font-medium">
-                <span>Project 3</span>
+              <div
+                class="list ml-5 cursor-pointer font-extralight tracking-wider hover:font-medium transition-all duration-300 ease-in-out"
+                data-img="images/Desktop - 1.jpg"
+              >
+                <span class="text-3xl">Project 3</span>
+              </div>
+
+              <!-- Area Konten (Gunakan transition-all dan duration) -->
+              <div
+                class="desc overflow-hidden h-fit py-4 transition-all duration-300 ease-in-out"
+              >
+                <p class="text-gray-400">
+                  Going beyond just a 'look,' I deliver custom digital solutions
+                  focused on usability and conversion. Let's turn your vision
+                  into a powerful tool for your business success.
+                </p>
+              </div>
+            </li>
+            <li class="py-5 border-b border-b-white/30">
+              <!-- Area Klik -->
+              <div
+                class="list cursor-pointer font-extralight tracking-wider hover:font-medium transition-all duration-300 ease-in-out"
+                data-img="images/Dribbble shot HD - 1.png"
+              >
+                <span class="text-3xl">Project 3</span>
               </div>
 
               <!-- Area Konten (Gunakan transition-all dan duration) -->
@@ -359,27 +386,13 @@
                 </p>
               </div>
             </li>
-            <li class="py-5 border-t border-t-white/30">
+            <li class="py-5 border-b border-b-white/30">
               <!-- Area Klik -->
-              <div class="list cursor-pointer hover:font-medium">
-                <span>Project 3</span>
-              </div>
-
-              <!-- Area Konten (Gunakan transition-all dan duration) -->
               <div
-                class="desc overflow-hidden h-0 transition-all duration-300 ease-in-out"
+                class="list cursor-pointer font-extralight tracking-wider hover:font-medium transition-all duration-300 ease-in-out"
+                data-img="images/dribbble_content.jpg"
               >
-                <p class="text-gray-400">
-                  Going beyond just a 'look,' I deliver custom digital solutions
-                  focused on usability and conversion. Let's turn your vision
-                  into a powerful tool for your business success.
-                </p>
-              </div>
-            </li>
-            <li class="py-5 border-t border-t-white/30">
-              <!-- Area Klik -->
-              <div class="list cursor-pointer hover:font-medium">
-                <span>Project 3</span>
+                <span class="text-3xl">Project 3</span>
               </div>
 
               <!-- Area Konten (Gunakan transition-all dan duration) -->
@@ -394,16 +407,146 @@
               </div>
             </li>
           </ul>
+          <div class="my-10">
+            <a href="#" class="text-black bg-white py-2 px-3 rounded-[3px]">
+              More
+            </a>
+          </div>
         </section>
-        <section class=""></section>
+        <section class="img-project flex justify-end items-center h-full">
+          <div class="relative group">
+            <!-- Kotak Dekorasi di Belakang -->
+            <!-- Ubah -right-4 -bottom-4 untuk mengatur posisi pergeseran kotak -->
+            <div
+              class="absolute -right-4 -bottom-4 w-full h-full border border-white/50 rounded-2xl transition-all duration-300 group-hover:-right-2 group-hover:-bottom-2"
+            ></div>
+
+            <!-- Gambar Utama -->
+            <img
+              id="main-project-img"
+              class="relative z-10 rounded-2xl transition-opacity duration-300 xl:max-h-100 lg:max-h-70 md:max-h-50 object-cover"
+              src="images/Desktop - 1.jpg"
+              alt=""
+            />
+          </div>
+        </section>
       </article>
     </section>
     <!-- Image Project -->
+    <section class="bg-[#0f0f0f] text-white py-20 px-6 sm:px-20">
+      <!-- Header: Judul & Navigasi -->
+      <div class="flex justify-between items-end mb-10">
+        <div>
+          <h2 class="text-4xl font-medium mb-4">
+            Creative Designs Made for<br />My Clients
+          </h2>
+          <p class="text-gray-500 font-mono">1/5</p>
+        </div>
+        <!-- Tombol Navigasi -->
+        <div class="flex gap-3">
+          <button
+            id="prevBtn"
+            class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all"
+          >
+            <span class="text-xl">←</span>
+          </button>
+          <button
+            id="nextBtn"
+            class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all"
+          >
+            <span class="text-xl">→</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Kontainer Carousel -->
+      <div
+        id="carousel-track"
+        class="flex gap-8 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory cursor-grab active:cursor-grabbing"
+      >
+        <!-- Item Card 1 -->
+        <div class="min-w-full md:min-w-[45%] snap-start group">
+          <div
+            class="aspect-video bg-blue-600 rounded-[3px] overflow-hidden mb-6"
+          >
+            <img
+              src="images/Desktop - 1.jpg"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              alt="Astro"
+            />
+          </div>
+          <h3 class="text-xl font-medium mb-3">Landing Page - BullishApp</h3>
+          <p class="text-gray-400 text-sm leading-relaxed mb-4">
+            Checkout This page is designed for checking out your products bought
+            from Astro Mart which a high quality e-commerce website.
+          </p>
+          <a
+            href="#"
+            class="text-sm font-medium border-b border-white/40 pb-1 hover:border-white transition-all"
+            >Learn more →</a
+          >
+        </div>
+
+        <!-- Item Card 2 -->
+        <div class="min-w-full md:min-w-[45%] snap-start group">
+          <div
+            class="aspect-video bg-slate-800 rounded-[3px] overflow-hidden mb-6"
+          >
+            <img
+              src="images/Dribbble shot HD - 1.png"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              alt="Admin Panel"
+            />
+          </div>
+          <h3 class="text-xl font-medium mb-3">Puttosea - Mobile</h3>
+          <p class="text-gray-400 text-sm leading-relaxed mb-4">
+            Admin Panel, The MSCSC Admin Panel streamlines website management,
+            enabling efficient updates to events and content.
+          </p>
+          <a
+            href="#"
+            class="text-sm font-medium border-b border-white/40 pb-1 hover:border-white transition-all"
+            >Learn more →</a
+          >
+        </div>
+        <!-- Item Card 2 -->
+        <div class="min-w-full md:min-w-[45%] snap-start group">
+          <div
+            class="aspect-video bg-slate-800 rounded-[3px] overflow-hidden mb-6"
+          >
+            <img
+              src="images/dribbble_content.jpg"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              alt="Admin Panel"
+            />
+          </div>
+          <h3 class="text-xl font-medium mb-3">Login Page - Wave Property</h3>
+          <p class="text-gray-400 text-sm leading-relaxed mb-4">
+            Admin Panel, The MSCSC Admin Panel streamlines website management,
+            enabling efficient updates to events and content.
+          </p>
+          <a
+            href="#"
+            class="text-sm font-medium border-b border-white/40 pb-1 hover:border-white transition-all"
+            >Learn more →</a
+          >
+        </div>
+
+        <!-- Tambahkan Item Card lainnya di sini -->
+      </div>
+    </section>
+    <!-- Profile -->
+    <section class="grid grid-cols-1 md:grid-cols-2 py-15">
+      <article>1</article>
+      <article>2</article>
+    </section>
     <script
       src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1"
       type="module"
     ></script>
     <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script src="script/script.js"></script>
   </body>
 </html>
