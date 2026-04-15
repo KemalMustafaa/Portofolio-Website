@@ -1,119 +1,140 @@
-var type = document.getElementById("title-intro");
+/**
+ * Mustafa Kemal Portfolio Script
+ */
 
-var typewriter = new Typewriter(type, {
-  loop: true,
-});
-typewriter
-  .typeString(
-    "I'm Mustafa Kemal <br> Fullstack Developer<span class='text-2xl'>©</span>",
-  )
-  .pauseFor(2500)
-  .deleteAll()
-  .typeString("I'm also Designer")
-  .pauseFor(2500)
-  .deleteAll()
-  .start();
+// 1. Typewriter Animation
+const initTypewriter = () => {
+  const typeElement = document.getElementById("title-intro");
+  if (!typeElement) return;
 
-// untuk membuat project li
-// Tambahkan titik (.) sebelum nama class
-// deklarasi untuk project
-// Inisialisasi Project
-const projectTag = document.querySelector("section.project");
-const mainImg = document.getElementById("main-project-img");
-if (projectTag) {
-  setupAccordion(
-    projectTag.querySelectorAll(".list"),
-    projectTag.querySelectorAll(".desc"),
-    "h-fit",
-  );
-}
+  const typewriter = new Typewriter(typeElement, { loop: true });
 
-// Inisialisasi FAQ
-const faqTag = document.querySelector(".faq-items");
-if (faqTag) {
-  setupAccordion(
-    faqTag.querySelectorAll(".list"),
-    faqTag.querySelectorAll(".ans"),
-    "h-auto",
-  );
-}
+  typewriter
+    .typeString(
+      "I'm Mustafa Kemal <br> Fullstack Developer<span class='text-2xl'>©</span>",
+    )
+    .pauseFor(2500)
+    .deleteAll()
+    .typeString("I'm also Designer")
+    .pauseFor(2500)
+    .deleteAll()
+    .start();
+};
 
-function setupAccordion(triggers, contents, activeClass = "h-fit") {
+// 2. Accordion Component (Project & FAQ)
+const setupAccordion = (triggers, contents, activeClass = "h-fit") => {
+  const mainImg = document.getElementById("main-project-img");
+
   triggers.forEach((item, i) => {
     item.addEventListener("click", () => {
-      const isOpen = contents[i].classList.contains(activeClass);
+      const targetContent = contents[i];
+      const isOpen = targetContent.classList.contains(activeClass);
 
-      // 1. Reset Semua (Tutup semua konten dan hapus styling trigger)
+      // Reset State
       contents.forEach((el) => {
-        el.classList.remove(activeClass, "py-4", "h-auto"); // gabungkan semua class aktif
+        el.classList.remove(activeClass, "py-4", "h-auto");
         el.classList.add("h-0");
       });
+
       triggers.forEach((el) => {
         el.classList.remove("ml-5", "font-medium");
         el.classList.add("ml-0");
       });
 
-      // 2. Jika sebelumnya tertutup, sekarang buka
+      // Toggle Open State
       if (!isOpen) {
-        contents[i].classList.add(activeClass, "py-4");
-        contents[i].classList.remove("h-0");
-        triggers[i].classList.add("font-medium");
+        targetContent.classList.add(activeClass, "py-4");
+        targetContent.classList.remove("h-0");
+        item.classList.add("font-medium");
 
-        // Khusus untuk section Project (jika ada margin)
-        if (triggers[i].closest("section.project")) {
-          triggers[i].classList.add("ml-5");
-        }
-
-        // Logic ganti gambar khusus untuk Project
-        const newImgPath = item.getAttribute("data-img");
-        if (newImgPath && mainImg) {
-          updateMainImage(newImgPath);
+        // Logic khusus Project
+        if (item.closest("section.project")) {
+          item.classList.add("ml-5");
+          const newImgPath = item.getAttribute("data-img");
+          if (newImgPath && mainImg) updateMainImage(mainImg, newImgPath);
         }
       }
     });
   });
-}
+};
 
-// Helper untuk transisi gambar
-function updateMainImage(path) {
-  mainImg.style.opacity = 0;
+const updateMainImage = (imgElement, path) => {
+  imgElement.style.opacity = 0;
   setTimeout(() => {
-    mainImg.src = path;
-    mainImg.style.opacity = 1;
+    imgElement.src = path;
+    imgElement.style.opacity = 1;
   }, 200);
-}
+};
 
-const track = document.getElementById("carousel-track");
-const nextBtn = document.getElementById("nextBtn");
-const prevBtn = document.getElementById("prevBtn");
+// 3. Carousel Handler
+const initCarousel = () => {
+  const track = document.getElementById("carousel-track");
+  const nextBtn = document.getElementById("nextBtn");
+  const prevBtn = document.getElementById("prevBtn");
 
-// Fungsi Klik Tombol
-nextBtn.addEventListener("click", () => {
-  track.scrollLeft += track.offsetWidth / 2;
-  track.scrollBy({ left: 300, behavior: "smooth" });
-});
+  if (!track || !nextBtn || !prevBtn) return;
 
-prevBtn.addEventListener("click", () => {
-  track.scrollLeft -= track.offsetWidth / 2;
-  track.scrollBy({ left: -300, behavior: "smooth" });
-});
+  const scrollAmount = 300;
 
-// Logika Drag Mouse (Opsional, gunakan kode drag yang kita bahas sebelumnya)
-let isDown = false;
-let startX;
-let scrollLeft;
+  nextBtn.addEventListener("click", () => {
+    track.scrollBy({ left: scrollAmount, behavior: "smooth" });
+  });
 
-track.addEventListener("mousedown", (e) => {
-  isDown = true;
-  startX = e.pageX - track.offsetLeft;
-  scrollLeft = track.scrollLeft;
-});
-track.addEventListener("mouseleave", () => (isDown = false));
-track.addEventListener("mouseup", () => (isDown = false));
-track.addEventListener("mousemove", (e) => {
-  if (!isDown) return;
-  e.preventDefault();
-  const x = e.pageX - track.offsetLeft;
-  const walk = (x - startX) * 2;
-  track.scrollLeft = scrollLeft - walk;
+  prevBtn.addEventListener("click", () => {
+    track.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+  });
+
+  // Drag Scroll Logic
+  let isDown = false,
+    startX,
+    scrollLeft;
+
+  track.addEventListener("mousedown", (e) => {
+    isDown = true;
+    track.classList.add("active"); // Bisa digunakan untuk ganti kursor
+    startX = e.pageX - track.offsetLeft;
+    scrollLeft = track.scrollLeft;
+  });
+
+  const stopDragging = () => {
+    isDown = false;
+    track.classList.remove("active");
+  };
+
+  track.addEventListener("mouseleave", stopDragging);
+  track.addEventListener("mouseup", stopDragging);
+
+  track.addEventListener("mousemove", (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - track.offsetLeft;
+    const walk = (x - startX) * 2;
+    track.scrollLeft = scrollLeft - walk;
+  });
+};
+
+// 4. Global Inisialisasi
+document.addEventListener("DOMContentLoaded", () => {
+  initTypewriter();
+  initCarousel();
+
+  // Project Accordion
+  const projectTag = document.querySelector("section.project");
+  if (projectTag) {
+    setupAccordion(
+      projectTag.querySelectorAll(".list"),
+      projectTag.querySelectorAll(".desc"),
+      "h-fit",
+    );
+  }
+
+  // FAQ Accordion
+  const faqTag = document.querySelector(".faq-items");
+  if (faqTag) {
+    setupAccordion(
+      faqTag.querySelectorAll(".list"),
+      faqTag.querySelectorAll(".ans"),
+      "h-auto",
+    );
+  }
 });
