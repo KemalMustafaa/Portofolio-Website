@@ -112,11 +112,12 @@
                 >
               </div>
             </div>
-            <button
+            <a
+              href="#contact"
               class="hidden sm:flex items-center justify-center px-2 py-2 text-sm rounded-[3px] bg-white text-black hover:bg-white/50 hover:text-white cursor-pointer"
             >
               Contact Me
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -168,7 +169,7 @@
           <div
             class="rounded-[3px] text-center px-3 py-2 mt-3 bg-gray-700 text-white"
           >
-            Contact Me
+            <a href="#contact"> Contact Me </a>
           </div>
         </div>
       </el-disclosure>
@@ -194,16 +195,20 @@
             </p>
           </div>
           <div class="btn-cta flex justify-center gap-5 py-7">
-            <button
-              class="px-4 py-2 text-sm bg-white text-black rounded-[3px] hover:bg-white/70 cursor-pointer"
-            >
-              Get Yours Now
-            </button>
-            <button
-              class="px-4 py-2 text-sm rounded-[3px] bg-gray-700/70 text-white hover:bg-gray-600 cursor-pointer"
-            >
-              See My Works
-            </button>
+            <a href="#contact">
+              <button
+                class="px-4 py-2 text-sm bg-white text-black rounded-[3px] hover:bg-white/70 cursor-pointer"
+              >
+                Get Yours Now
+              </button>
+            </a>
+            <a href="#project">
+              <button
+                class="px-4 py-2 text-sm rounded-[3px] bg-gray-700/70 text-white hover:bg-gray-600 cursor-pointer"
+              >
+                See My Works
+              </button>
+            </a>
           </div>
         </div>
       </section>
@@ -305,6 +310,7 @@
               powerful tool for your business success.
             </p>
             <button
+              id="btn-learn-more"
               class="bg-white text-black px-3 py-2 rounded-[3px] hover:bg-white/50 hover:text-white cursor-pointer"
             >
               Learn More
@@ -634,15 +640,18 @@
         </p>
         <div class="btn-profile text-sm flex gap-3 mt-10">
           <button
-            class="py-2 px-3 bg-white text-black rounded-[3px] hover:bg-white/50 hover:text-white"
+            id="resume"
+            class="py-2 px-3 bg-white text-black rounded-[3px] hover:bg-white/50 hover:text-white cursor-pointer"
           >
             My Resume
           </button>
-          <button
-            class="py-2 px-3 bg-white/50 rounded-[3px] hover:bg-white hover:text-black"
-          >
-            Contact Me
-          </button>
+          <a href="#contact">
+            <button
+              class="py-2 px-3 bg-white/50 rounded-[3px] hover:bg-white hover:text-black cursor-pointer"
+            >
+              Contact Me
+            </button>
+          </a>
         </div>
       </article>
     </section>
@@ -815,58 +824,86 @@
           new project or just for chatting
         </p>
         <div class="icon-contact flex gap-5">
-          <a href="#">
+          <a
+            id="gmail-btn"
+            href="javascript:void(0)"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <img
-              class="h-8 hover:scale-110"
+              class="h-8 hover:scale-110 transition-transform duration-300"
               src="src/images/icon/gmail.png"
-              alt=""
+              alt="Email"
             />
           </a>
-          <a href="">
+          <a
+            id="wa-btn"
+            href="javascript:void(0)"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <img
               class="h-8 hover:scale-110"
               src="src/images/icon/wa.png"
-              alt=""
+              alt="Whatsapp"
             />
           </a>
-          <a href="">
+          <a
+            href="https://www.linkedin.com/in/mustafakemal/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <img
               class="h-8 hover:scale-110"
               src="src/images/icon/linkedin.png"
-              alt=""
+              alt="LinkedIn"
             />
           </a>
-          <a href="">
+          <a
+            href="https://dribbble.com/Mustafa_Kemal"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <img
               class="h-8 hover:scale-110"
               src="src/images/icon/dribbble.png"
-              alt=""
+              alt="Dribbble"
             />
           </a>
         </div>
       </article>
       <article class="form-contact">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-8">
-          <input
-            class="border-b border-b-white/50 py-4 focus:outline-none"
-            type="text"
-            placeholder="Name"
-          />
-          <input
-            class="border-b border-b-white/50 py-4 focus:outline-none"
-            type="text"
-            placeholder="Email@email.com"
-          />
-        </div>
-        <textarea
-          class="w-full h-52 border-b border-b-white/50 py-4 focus:outline-none mb-5"
-          placeholder="What you want to ask?"
-        ></textarea>
-        <button
-          class="py-2 px-3 text-sm bg-white text-black hover:bg-white/50 hover:text-white rounded-[3px]"
-        >
-          Submit
-        </button>
+        <form id="contact-form" method="post">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-8">
+            <input
+              id="name"
+              name="from_name"
+              class="border-b border-b-white/50 py-4 focus:outline-none"
+              type="text"
+              placeholder="Name"
+            />
+            <input
+              id="email"
+              name="email"
+              class="border-b border-b-white/50 py-4 focus:outline-none"
+              type="text"
+              placeholder="Email@email.com"
+            />
+          </div>
+          <textarea
+            id="message"
+            name="message"
+            class="w-full h-52 border-b border-b-white/50 py-4 focus:outline-none mb-5"
+            placeholder="What you want to ask?"
+          ></textarea>
+          <button
+            id="send"
+            type="submit"
+            class="py-2 px-3 text-sm bg-white text-black hover:bg-white/50 hover:text-white rounded-[3px]"
+          >
+            Submit
+          </button>
+        </form>
       </article>
     </section>
     <!-- footer -->
@@ -880,11 +917,12 @@
             If you have asany project or if you want make a software and website
             for your business, you can contact me.
           </p>
-          <button
+          <a
+            href="#contact"
             class="items-center justify-center px-2 py-2 text-sm rounded-[3px] bg-white text-black hover:bg-white/50 hover:text-white cursor-pointer"
           >
             Contact Me
-          </button>
+          </a>
         </div>
         <div class="footer-right">
           <div class="grid grid-cols-1 lg:grid-cols-2">
@@ -896,7 +934,7 @@
               </div>
               <div class="phone mb-5">
                 <h4>Phone:</h4>
-                <p class="text-sm font-extralight">081295652460</p>
+                <p class="text-sm font-extralight">+62 81295652460</p>
               </div>
               <div class="email mb-5">
                 <h4>linkedIn:</h4>
@@ -946,6 +984,11 @@
     <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="src/script/script.js"></script>
   </body>
 </html>

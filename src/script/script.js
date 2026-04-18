@@ -201,3 +201,138 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
 });
+
+//button service
+document.getElementById("btn-learn-more").addEventListener("click", () => {
+  document.getElementById("faq").scrollIntoView({
+    behavior: "smooth",
+  });
+});
+
+//email
+const GmailContact = {
+  config: {
+    email: "mkemal1505@gmail.com",
+    subject: "Project Inquiry - [Your Name]",
+    body: "Halo Kemal,\n\nSaya tertarik dengan portofolio Anda...",
+  },
+
+  init() {
+    const btn = document.getElementById("gmail-btn");
+    if (btn) {
+      btn.addEventListener("click", () => this.openGmail());
+    }
+  },
+
+  openGmail() {
+    const base = "https://mail.google.com/mail/?view=cm&fs=1";
+    const to = `&to=${this.config.email}`;
+    const su = `&su=${encodeURIComponent(this.config.subject)}`;
+    const body = `&body=${encodeURIComponent(this.config.body)}`;
+
+    window.open(`${base}${to}${su}${body}`, "_blank");
+  },
+};
+
+// Panggil di DOMContentLoaded
+document.addEventListener("DOMContentLoaded", () => GmailContact.init());
+
+//Contact - Whatsapp
+const WAContact = {
+  phone: "6281295652460", // Ganti dengan nomor WA kamu
+  message:
+    "Halo Mustafa Kemal, saya melihat portofolio Anda dan ingin berdiskusi mengenai project...",
+
+  init() {
+    const waBtn = document.getElementById("wa-btn");
+    if (waBtn) {
+      waBtn.addEventListener("click", () => this.openWhatsApp());
+    }
+  },
+
+  openWhatsApp() {
+    const url = `https://wa.me/${this.phone}?text=${encodeURIComponent(this.message)}`;
+    window.open(url, "_blank");
+  },
+};
+
+// Panggil di dalam DOMContentLoaded bersama inisialisasi lainnya
+document.addEventListener("DOMContentLoaded", () => {
+  WAContact.init();
+});
+
+// emailjs
+const ContactService = {
+  init() {
+    emailjs.init("UMZqSH-29gpomUKn8"); // Masukkan Public Key dari Dashboard EmailJS
+  },
+
+  async handleFormSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    const btn = form.querySelector("button");
+
+    try {
+      btn.innerText = "Sending...";
+      btn.disabled = true;
+
+      await emailjs.sendForm(
+        "service_dzx3f2g", // Cek di Dashboard EmailJS
+        "template_kcbtzdo", // Cek di Dashboard EmailJS
+        form,
+      );
+
+      Swal.fire({
+        title: "Good job!",
+        text: "Message sent! Thank you, Kemal will reply shortly.!",
+        icon: "success",
+      });
+      form.reset();
+    } catch (err) {
+      console.error("EmailJS Error:", err);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Failed to send the message. Please try again.",
+        footer: '<a href="#">Why do I have this issue?</a>',
+      });
+    } finally {
+      btn.innerText = "Submit";
+      btn.disabled = false;
+    }
+  },
+};
+
+// --- 2. FUNGSI UI LAINNYA ---
+const initUI = () => {
+  // Masukkan logika Navbar, Carousel, atau Typewriter kamu di sini
+  console.log("UI Initialized");
+};
+
+// --- 3. GLOBAL INITIALIZATION (Pusat Kendali) ---
+document.addEventListener("DOMContentLoaded", () => {
+  // Jalankan EmailJS
+  ContactService.init();
+
+  // Jalankan Fungsi UI
+  initUI();
+
+  // Pasang Event Listener ke Form
+  const contactForm = document.getElementById("contact-form");
+  if (contactForm) {
+    contactForm.addEventListener("submit", ContactService.handleFormSubmit);
+  }
+});
+
+//
+const resume = document
+  .getElementById("resume")
+  .addEventListener("click", () => {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Something went wrong!",
+      footer: '<a href="#">Why do I have this issue?</a>',
+      confirmButtonColor: "#3085d6",
+    });
+  });
