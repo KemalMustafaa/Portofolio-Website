@@ -2,6 +2,41 @@
  * Mustafa Kemal Portfolio Script
  */
 
+// navbar
+document.addEventListener("DOMContentLoaded", () => {
+  // Ambil semua link dari Navbar (Desktop & Mobile)
+  const allNavLinks = document.querySelectorAll('nav a[href^="#"]');
+  const mobileMenu = document.getElementById("mobile-menu");
+
+  allNavLinks.forEach((link) => {
+    link.addEventListener("click", function () {
+      // 1. LOGIKA ACTIVE STATE
+      // Hapus style aktif dari semua link di seluruh navbar
+      allNavLinks.forEach((item) => {
+        item.classList.remove("text-white", "border-gray-500");
+        item.classList.add("text-gray-300", "border-transparent");
+      });
+
+      // Tambahkan style aktif ke link yang diklik
+      this.classList.remove("text-gray-300", "border-transparent");
+      this.classList.add("text-white", "border-gray-500");
+
+      // 2. LOGIKA AUTO-CLOSE MOBILE MENU
+      // Jika link yang diklik berada di dalam mobile menu, tutup menunya
+      if (this.closest("#mobile-menu")) {
+        // Karena kamu menggunakan Headless UI / Element UI (el-disclosure),
+        // cara menutupnya adalah dengan memicu klik pada tombol toggle-nya
+        const toggleButton = document.querySelector(
+          '[commandfor="mobile-menu"]',
+        );
+        if (toggleButton) {
+          toggleButton.click();
+        }
+      }
+    });
+  });
+});
+
 // 1. Typewriter Animation
 const initTypewriter = () => {
   const typeElement = document.getElementById("title-intro");
